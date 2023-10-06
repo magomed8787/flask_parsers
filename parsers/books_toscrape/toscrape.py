@@ -11,7 +11,7 @@ class ToScrapeResource(BaseResource):
         project_data_list = []
         q = requests.get(self.MAIN_URL)
         soup = BeautifulSoup(q.text, 'lxml')
-        count = soup.find("ul", class_="pager").find("li", class_="current").text.split()
+        count = soup.find('ul', class_="pager").find("li", class_="current").text.split()
         count = int(count[-1]) #Количество страниц пагинации
 
         for i in range(self.args.pages_count):
