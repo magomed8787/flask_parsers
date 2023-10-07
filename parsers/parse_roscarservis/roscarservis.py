@@ -64,6 +64,6 @@ class RosCarServisResource(BaseResource):
                 self.logger.error(e)
                 self.logger.error(e)('Damn...There was some error...')
 
-        with open('./data/roscarservis/tires_list_result.json', 'a', encoding='utf-8') as file:
+        with open('./data/roscarservis/tires_list_result.json', "a", encoding='utf-8') as file:
             json.dump(tires_list_result, file, indent=4, ensure_ascii=False)
         return tires_list_result
