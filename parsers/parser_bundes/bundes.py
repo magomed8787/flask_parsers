@@ -10,13 +10,13 @@ class BundesResource(BaseResource):
         for i in range(0, 749, 12):
             if len(persons_urls) >= self.args.count:
                 break
-            url = f"{self.MAIN_URL}/ajax/filterlist/en/members/863330-863330?limit=12&noFilterSet=true&offset={i}"
+            url = f'{self.MAIN_URL}/ajax/filterlist/en/members/863330-863330?limit=12&noFilterSet=true&offset={i}'
 
             q = self.session.get(url)
             result = q.content
 
             soup = BeautifulSoup(result, 'lxml')
-            divs = soup.find_all("div", class_="bt-slide-content")
+            divs = soup.find_all('div', class_='bt-slide-content')
 
             for div in divs:
                 persons_urls.append(div.find('a')['href'])
@@ -30,9 +30,9 @@ class BundesResource(BaseResource):
             q = self.session.get(person_data)
             result = q.content
 
-            soup = BeautifulSoup(result, "lxml")
+            soup = BeautifulSoup(result, 'lxml')
 
-            person = soup.find("div", class_="col-xs-8 col-md-9 bt-biografie-name").find("h3").text
+            person = soup.find('div', class_='col-xs-8 col-md-9 bt-biografie-name').find('h3').text
 
             person_name_company = person.strip().split(',')
             person_name = person_name_company[0]
@@ -51,7 +51,7 @@ class BundesResource(BaseResource):
 
             data.append(person_data)
 
-        with open(f"./data/bundes/list_result.json", "a", encoding="utf-8") as file:
+        with open(f'./data/bundes/list_result.json', 'a', encoding='utf-8') as file:
             json.dump(data, file, indent=4, ensure_ascii=False)
 
         return data
