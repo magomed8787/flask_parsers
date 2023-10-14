@@ -25,3 +25,4 @@ class BaseResource(Resource):
 
     def get(self):
         return self.parse()
+#
